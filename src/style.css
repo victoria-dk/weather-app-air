@@ -1,0 +1,119 @@
+body {
+  font-family: "Cormorant", serif;
+}
+h1,
+h2,
+h3,
+p {
+  color: #5a6276;
+}
+h3 {
+  font-size: 20px;
+  text-align: center;
+}
+p {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  color: #5a6276;
+  list-style: none;
+  text-align: left;
+  font-size: 20px;
+}
+.container {
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  margin-top: 5%;
+  max-width: 750px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.3);
+}
+.button-geolocation {
+  border: none;
+  background: transparent;
+  color: #5a6276;
+}
+.button-geolocation:focus {
+  outline: none;
+}
+.search-bar {
+  text-align: center;
+  padding-bottom: 15px;
+}
+.input-search {
+  background: #fff;
+  opacity: 0.5;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+  height: 35px;
+  padding: 10px;
+}
+.input-search:focus {
+  outline: none;
+}
+.button-search {
+  border: none;
+  background: transparent;
+  color: #5a6276;
+}
+.button-search:focus {
+  outline: none;
+}
+.current-date-time {
+  text-align: left;
+  display: block;
+  color: #5a6276;
+}
+.current-weather-description {
+  text-align: left;
+  display: block;
+  color: #5a6276;
+}
+.current-location h1 {
+  text-transform: capitalize;
+  font-size: 40px;
+  text-align: left;
+}
+
+.current-temperature .temperature {
+  font-size: 80px;
+  color: #5a6276;
+}
+.current-temperature .units #celsius,
+#farenheit {
+  font-size: 30px;
+  color: #5a6276;
+  position: relative;
+  top: -34px;
+}
+.day-time {
+  display: block;
+  color: #5a6276;
+}
+.description {
+  color: #5a6276;
+}
+.content img {
+  width: 200px;
+  height: 200px;
+}
+.weather-details {
+  position: relative;
+  top: 10px;
+  padding-left: 0%;
+}
+.forecast-division {
+  text-align: center;
+  padding-top: 0;
+  color: #b2b4ba;
+}
+.five-days-forecast img {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}
