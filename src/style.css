@@ -117,3 +117,8 @@ li {
   width: 100px;
   height: 100px;
 }
+
+.open-source p {
+  text-align: center;
+  padding: 1%;
+}
