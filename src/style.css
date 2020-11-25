@@ -24,11 +24,15 @@ li {
   font-size: 20px;
 }
 .container {
+  max-width: 750px;
+  margin: 20px auto;
+}
+.weather-app {
   background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  border-radius: 5px;
   margin-top: 5%;
   max-width: 750px;
   padding: 30px;
-  border-radius: 5px;
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.3);
 }
 .button-geolocation {
@@ -77,6 +81,7 @@ li {
   text-transform: capitalize;
   font-size: 40px;
   text-align: left;
+  margin-bottom: 1px;
 }
 
 .current-temperature .temperature {
@@ -97,7 +102,16 @@ li {
 .description {
   color: #5a6276;
 }
-.content img {
+
+.currently-content {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.col-4 {
+  padding: 0;
+}
+.currently-content img {
   width: 200px;
   height: 200px;
 }
@@ -120,5 +134,5 @@ li {
 
 .open-source p {
   text-align: center;
-  padding: 1%;
+  margin: 10px;
 }
