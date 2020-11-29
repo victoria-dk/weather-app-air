@@ -21,7 +21,7 @@ li {
   color: #5a6276;
   list-style: none;
   text-align: left;
-  font-size: 20px;
+  font-size: 25px;
 }
 .container {
   max-width: 750px;
@@ -67,15 +67,8 @@ li {
 .button-search:focus {
   outline: none;
 }
-.current-date-time {
-  text-align: left;
-  display: block;
-  color: #5a6276;
-}
-.current-weather-description {
-  text-align: left;
-  display: block;
-  color: #5a6276;
+.overview {
+  margin: 10px;
 }
 .current-location h1 {
   text-transform: capitalize;
@@ -83,42 +76,61 @@ li {
   text-align: left;
   margin-bottom: 1px;
 }
-
-.current-temperature .temperature {
-  font-size: 80px;
-  color: #5a6276;
-}
-.current-temperature .units #celsius,
-#farenheit {
-  font-size: 30px;
-  color: #5a6276;
-  position: relative;
-  top: -34px;
-}
-.day-time {
+.current-date-time {
+  text-align: left;
   display: block;
   color: #5a6276;
 }
 .description {
   color: #5a6276;
 }
-
-.currently-content {
-  margin-right: 0;
-  margin-left: 0;
+.current-weather-description {
+  text-align: left;
+  display: block;
+  color: #5a6276;
 }
-
-.col-4 {
-  padding: 0;
+.row .currently-content {
+  margin-bottom: 0;
 }
 .currently-content img {
   width: 200px;
   height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+.current-temperature {
+  margin-bottom: 10px;
+}
+.current-temperature .temperature {
+  font-size: 80px;
+  color: #5a6276;
+  line-height: 1;
+  font-weight: 450;
+}
+.current-temperature .units {
+  font-size: 20px;
+  color: #5a6276;
+  position: relative;
+  top: -20px;
+}
+.current-temperature .active {
+  color: #5a6276;
+  cursor: default;
+}
+.current-temperature .active:hover {
+  text-decoration: none;
+}
+.day-time {
+  display: block;
+  color: #5a6276;
+}
+.currently-content {
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: -50px;
 }
 .weather-details {
-  position: relative;
-  top: 10px;
-  padding-left: 0%;
+  padding-left: 0;
 }
 .forecast-division {
   text-align: center;
