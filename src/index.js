@@ -1,76 +1,70 @@
 // Current date and time:
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
 
-let now = new Date();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let months = [
+    "Jan",
+    "Feb",
+    "March",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-let currentDateTime = document.querySelector("#date");
+  let day = days[date.getDay()];
+  let months = months[date.getMonth()];
+  let year = date.getFullYear();
 
-let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-let months = [
-  "Jan",
-  "Feb",
-  "March",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-let currentDay = days[now.getDay()];
-let currentMonth = months[now.getMonth()];
-let currentYear = now.getFullYear();
-let currentDate = now.getDate();
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
+  return `${day}, ${months}, ${year} ${formatHours(timestamp)}`;
 }
 
-date.innerHTML = `${currentDay}, ${currentDate} ${currentMonth} ${currentYear}, ${hours}:${minutes}`;
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-//Display temperature in Celsius, add a link to convert it to Fahrenheit:
-function convertToFarenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".temperature");
-  temperatureElement.innerHTML = "46";
+  return `${hours}:${minutes}`;
 }
 
-let farenheitLink = document.querySelector("#farenheit");
-farenheitLink.addEventListener("click", convertToFarenheit);
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let newTemperature = document.querySelector(".temperature");
-  newTemperature.innerHTML = "8";
-}
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", convertToCelsius);
-
-//API - when a user searches for a city (example: New York),
-// it should display the name of the city on the result page and the current temperature of the city:
+//API - display the name of the city on the result page and the current temperature of the city:
 
 function displayCurrentWeather(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  let cityElement = document.querySelector("#city");
+  let temperatureElement = document.querySelector("#temperature");
+  let descriptionElement = document.querySelector("#description");
+  let pressureElement = document.querySelector("#pressure");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
 
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  pressureElement.innerHTML = response.data.main.pressure;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  document.querySelector("#pressure").innerHTML = response.data.main.pressure;
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function searchCity(city) {
@@ -81,8 +75,8 @@ function searchCity(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  let cityInputElement = document.querySelector("#city-input");
+  searchCity(cityInputElement.value);
 }
 
 function searchLocation(position) {
@@ -107,3 +101,22 @@ let currentLocationButton = document.querySelector(
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Copenhagen");
+
+//Display temperature in Celsius, add a link to convert it to Fahrenheit:
+function convertToFarenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".temperature");
+  temperatureElement.innerHTML = "46";
+}
+
+let farenheitLink = document.querySelector("#farenheit");
+farenheitLink.addEventListener("click", convertToFarenheit);
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let newTemperature = document.querySelector(".temperature");
+  newTemperature.innerHTML = "8";
+}
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", convertToCelsius);
