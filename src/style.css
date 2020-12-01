@@ -93,8 +93,8 @@ li {
   margin-bottom: 0;
 }
 .currently-content img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   display: block;
   margin: 0 auto;
 }
@@ -127,7 +127,6 @@ li {
 .currently-content {
   margin-right: 0;
   margin-left: 0;
-  margin-bottom: -50px;
 }
 .weather-details {
   padding-left: 0;
