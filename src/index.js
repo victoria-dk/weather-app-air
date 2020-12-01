@@ -1,6 +1,6 @@
 // Current date and time:
 function formatDate(timestamp) {
-  let date = new Date(timestamp);
+  let now = new Date(timestamp);
 
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let months = [
@@ -18,11 +18,12 @@ function formatDate(timestamp) {
     "Dec",
   ];
 
-  let day = days[date.getDay()];
-  let months = months[date.getMonth()];
-  let year = date.getFullYear();
+  let day = days[now.getDay()];
+  let date = now.getDate();
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
 
-  return `${day}, ${months}, ${year} ${formatHours(timestamp)}`;
+  return `${day} ${date} ${month} ${year} ${formatHours(timestamp)}`;
 }
 
 function formatHours(timestamp) {
