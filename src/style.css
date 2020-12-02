@@ -1,5 +1,5 @@
 body {
-  font-family: "Cormorant", serif;
+  font-family: "Roboto", sans-serif;
 }
 h1,
 h2,
@@ -21,7 +21,7 @@ li {
   color: #5a6276;
   list-style: none;
   text-align: left;
-  font-size: 25px;
+  font-size: 22px;
 }
 .container {
   max-width: 750px;
@@ -131,7 +131,7 @@ li {
 
 .suntime li {
   color: #5a6276;
-  font-size: 20px;
+  font-size: 15px;
 }
 .currently-content {
   margin-right: 0;
