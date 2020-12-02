@@ -51,6 +51,8 @@ function displayCurrentWeather(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+  let sunriseElement = document.querySelector("#sunrise");
+  let sunsetElement = document.querySelector("#sunset");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -66,6 +68,8 @@ function displayCurrentWeather(response) {
     "src",
     `images/${response.data.weather[0].icon}.png`
   );
+  sunriseElement.innerHTML = formatHours(response.data.sys.sunrise * 1000);
+  sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
 }
 
 function searchCity(city) {

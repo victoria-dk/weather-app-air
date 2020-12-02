@@ -102,7 +102,7 @@ li {
   margin: 0 auto;
 }
 .current-temperature {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: -40px;
 }
 .current-temperature .temperature {
@@ -124,9 +124,14 @@ li {
 .current-temperature .active:hover {
   text-decoration: none;
 }
-.day-time {
-  display: block;
+.suntime {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.suntime li {
   color: #5a6276;
+  font-size: 20px;
 }
 .currently-content {
   margin-right: 0;
