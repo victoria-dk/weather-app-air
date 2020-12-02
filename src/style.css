@@ -84,6 +84,9 @@ li {
 .description {
   color: #5a6276;
 }
+.description::first-letter {
+  text-transform: capitalize;
+}
 .current-weather-description {
   text-align: left;
   display: block;
