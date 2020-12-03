@@ -115,7 +115,7 @@ li {
   font-size: 20px;
   color: #5a6276;
   position: relative;
-  top: -20px;
+  top: -50px;
 }
 .current-temperature .active {
   color: #5a6276;
@@ -139,6 +139,9 @@ li {
 }
 .weather-details {
   padding-left: 0;
+}
+.weather-details ul {
+  margin-left: -50px;
 }
 .forecast-division {
   text-align: center;

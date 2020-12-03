@@ -42,9 +42,9 @@ function formatHours(timestamp) {
 
 //API - display the name of the city on the result page and the current temperature of the city:
 
-function displayCurrentWeather(response) {
-  let cityElement = document.querySelector("#city");
+function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
   let pressureElement = document.querySelector("#pressure");
   let humidityElement = document.querySelector("#humidity");
@@ -72,20 +72,47 @@ function displayCurrentWeather(response) {
   sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
 }
 
-function searchCity(city) {
+function search(city) {
   let apiKey = "87429fdbf593621029427a484995b880";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayCurrentWeather);
-
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
-  searchCity(cityInputElement.value);
+  search(cityInputElement.value);
 }
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayFahrenheitTemperature);
+
+search("Copenhagen");
 
 function searchLocation(position) {
   let apiKey = "87429fdbf593621029427a484995b880";
@@ -99,31 +126,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
-
 let currentLocationButton = document.querySelector(
   "#current-geolocation-button"
 );
 currentLocationButton.addEventListener("click", getCurrentLocation);
-
-searchCity("Copenhagen");
-
-//Display temperature in Celsius, add a link to convert it to Fahrenheit:
-function convertToFarenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".temperature");
-  temperatureElement.innerHTML = "46";
-}
-
-let farenheitLink = document.querySelector("#farenheit");
-farenheitLink.addEventListener("click", convertToFarenheit);
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  let newTemperature = document.querySelector(".temperature");
-  newTemperature.innerHTML = "8";
-}
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", convertToCelsius);
