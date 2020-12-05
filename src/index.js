@@ -1,4 +1,3 @@
-// Current date and time:
 function formatDate(timestamp) {
   let now = new Date(timestamp);
 
@@ -40,8 +39,6 @@ function formatHours(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-//API - display the name of the city on the result page and the current temperature of the city:
-
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -72,10 +69,38 @@ function displayTemperature(response) {
   sunsetElement.innerHTML = formatHours(response.data.sys.sunset * 1000);
 }
 
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+      <h3>
+        ${formatHours(forecast.dt * 1000)}
+      </h3>
+      <img 
+        src="images/${forecast.weather[0].icon}.png"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>${Math.round(forecast.main.temp_max)}°</strong> | ${Math.round(
+      forecast.main.temp_min
+    )}°
+      </div>
+    </div>
+  `;
+  }
+}
+
 function search(city) {
   let apiKey = "87429fdbf593621029427a484995b880";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
@@ -117,8 +142,7 @@ search("Copenhagen");
 function searchLocation(position) {
   let apiKey = "87429fdbf593621029427a484995b880";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(displayCurrentWeather);
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function getCurrentLocation(event) {
