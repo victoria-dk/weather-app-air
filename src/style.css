@@ -159,6 +159,9 @@ li {
   color: #5a6276;
   font-size: 15px;
 }
+.weather-forecast-temperature strong {
+  font-size: larger;
+}
 
 .open-source p {
   text-align: center;
